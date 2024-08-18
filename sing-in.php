@@ -27,31 +27,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_result($id, $username, $storedPassword, $type);
         $stmt->fetch();
 
-        // Compare the password directly
+        // Compare the password directly (consider using password_hash in production)
         if ($password === $storedPassword) {
-            // Check if the user is an admin
-            if ($type === 'MANAGER') {
-                // Set session variables and redirect to m-dashboard.php
-                $_SESSION['username'] = $username;
-                $_SESSION['user_id'] = $id;
-                header("Location: m-dashboard.php");
-                exit();
-            } else {
-                // Not an admin
-                $error = "You are not authorized to access this page.";
-            }
+            // Store user information in session variables
+            $_SESSION['id'] = $id;
+            $_SESSION['name'] = $username;
+            $_SESSION['email'] = $email;
+            $_SESSION['type'] = $type; // Store admin type in session
+
+            // Redirect to the dashboard
+            header("Location: ./m-dashboard.php");
+            exit();
         } else {
             // Incorrect password
-            $error = "Incorrect password.";
+            echo "Invalid email or password.";
         }
     } else {
-        // Incorrect email
-        $error = "Email not found.";
+        // No matching user found
+        echo "Invalid email or password.";
     }
-    $stmt->close();
-}
 
-$conn->close();
+    $stmt->close();
+    $conn->close();
+}
 ?>
 
 <!DOCTYPE html>
