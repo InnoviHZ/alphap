@@ -444,7 +444,7 @@
     </div>
   </div>
 </div>
-
+            <!-- Register Manager -->
 <div class="registration-popup animate__animated animate__fadeIn" id="registerManagerPopup">
   <span class="close" id="closeManagerPopup">&times;</span>
   <h2 class="text-center mb-4">Register New Manager</h2>
@@ -534,7 +534,7 @@
     </div>
   </form>
 </div>
-
+            <!-- Register admin -->
 <div class="registration-popup animate__animated animate__fadeIn" id="registerAdminPopup">
   <span class="close" id="closeAdminPopup">&times;</span>
   <h2 class="text-center mb-4">Register New Admin</h2>

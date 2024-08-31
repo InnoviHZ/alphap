@@ -39,6 +39,7 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.bootstrap4.min.css">
   <!-- Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <script src="path/to/dashboard.js"></script>
   <style>
     .custom-navbar { background-color: #2c3e50; }
     .custom-sidebar { background-color: #34495e; }
@@ -407,35 +408,28 @@
             </div>
           </div>
         </div>
-
+          
         <!-- Beneficiaries Table -->
-        <div class="row">
+<div class="row">
   <div class="col-12">
     <div class="card custom-card animate__animated animate__fadeInUp">
       <div class="card-header">
-        <h3 class="card-title">Registered Beneficiaries</h3>
+        <h3 class="card-title" id="tableTitle">Registered Beneficiaries</h3>
       </div>
-      <div class="table-responsive">
-  <table id="beneficiariesTable" class="table table-bordered table-striped beneficiary-table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>LGA</th>
-        <th class="d-none d-md-table-cell">Gender</th>
-        <th class="d-none d-md-table-cell">Benefit Type</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Table body will be populated dynamically -->
-    </tbody>
-  </table>
-</div>
+      <div class="card-body">
+        <table id="dataTable" class="table table-bordered table-striped">
+          <thead id="tableHead">
+            <!-- Table headers will be dynamically populated -->
+          </thead>
+          <tbody>
+            <!-- Table body will be dynamically populated -->
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
-
+</div>>
+            <!-- Register Beneficiary -->
   <!-- Multi-step Registration Popup -->
   <div class="registration-popup animate__animated animate__fadeIn" id="registrationPopup">
     <span class="close" id="closePopup">&times;</span>
@@ -540,6 +534,185 @@
       </div>
     </form>
   </div>
+        <!-- Register Manager -->
+<div class="registration-popup animate__animated animate__fadeIn" id="registerManagerPopup">
+  <span class="close" id="closeManagerPopup">&times;</span>
+  <h2 class="text-center mb-4">Register New Manager</h2>
+  <form id="managerForm" action="register_manager.php" method="post" enctype="multipart/form-data">
+    <div class="step-indicators">
+      <span class="step active"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="step-content" id="managerStep1">
+      <h3 class="text-center mb-4">Basic Information</h3>
+      <div class="form-group">
+        <label for="managerName">Full Name</label>
+        <input type="text" class="form-control" id="managerName" name="managerName" required>
+      </div>
+      <div class="form-group">
+        <label for="managerDOB">Date of Birth</label>
+        <input type="date" class="form-control" id="managerDOB" name="managerDOB" required>
+      </div>
+      <div class="form-group">
+        <label for="managerGender">Gender</label>
+        <select class="form-control" id="managerGender" name="managerGender" required>
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-content" id="managerStep2" style="display:none;">
+      <h3 class="text-center mb-4">Contact Information</h3>
+      <div class="form-group">
+        <label for="managerLGA">State</label>
+        <select class="form-control" id="managerLGA" name="managerLGA" required>
+          <option value="">Select State</option>
+          <!-- Add LGA options here -->
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="managerWard">Local Government Area (LGA)</label>
+        <select class="form-control" id="managerWard" name="managerWard" required>
+          <option value="">Select LGA</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="managerAddress">Address</label>
+        <textarea class="form-control" id="managerAddress" name="managerAddress" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="managerPhone">Phone Number</label>
+        <input type="tel" class="form-control" id="managerPhone" name="managerPhone" required>
+      </div>
+      <div class="form-group">
+        <label for="managerEmail">Email</label>
+        <input type="email" class="form-control" id="managerEmail" name="managerEmail" required>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-content" id="managerStep3" style="display:none;">
+      <h3 class="text-center mb-4">Additional Details</h3>
+      <div class="form-group">
+        <label for="managerID">ID Number</label>
+        <input type="text" class="form-control" id="managerID" name="managerID" required>
+      </div>
+      <div class="form-group">
+        <label for="managerDepartment">Department</label>
+        <input type="text" class="form-control" id="managerDepartment" name="managerDepartment" required>
+      </div>
+      <div class="form-group">
+        <label for="managerPhoto">Photo</label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="managerPhoto" name="managerPhoto" accept="image/*" required>
+          <label class="custom-file-label" for="managerPhoto">Choose file</label>
+        </div>
+        <img id="managerPhotoPreview" src="#" alt="Manager Photo" style="display:none; max-width: 100%; margin-top: 10px;">
+      </div>
+    </div>
+
+    <div class="form-navigation">
+      <button type="button" class="btn btn-secondary" id="managerPrevBtn" style="display:none;">Previous</button>
+      <button type="button" class="btn btn-primary" id="managerNextBtn">Next</button>
+      <button type="submit" class="btn btn-success" id="managerSubmitBtn" style="display:none;">Submit</button>
+    </div>
+  </form>
+</div>
+            <!-- Register admin -->
+<div class="registration-popup animate__animated animate__fadeIn" id="registerAdminPopup">
+  <span class="close" id="closeAdminPopup">&times;</span>
+  <h2 class="text-center mb-4">Register New Admin</h2>
+  <form id="adminForm" action="register_admin.php" method="post" enctype="multipart/form-data">
+    <div class="step-indicators">
+      <span class="step active"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="step-content" id="adminStep1">
+      <h3 class="text-center mb-4">Basic Information</h3>
+      <div class="form-group">
+        <label for="adminName">Full Name</label>
+        <input type="text" class="form-control" id="adminName" name="adminName" required>
+      </div>
+      <div class="form-group">
+        <label for="adminDOB">Date of Birth</label>
+        <input type="date" class="form-control" id="adminDOB" name="adminDOB" required>
+      </div>
+      <div class="form-group">
+        <label for="adminGender">Gender</label>
+        <select class="form-control" id="adminGender" name="adminGender" required>
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-content" id="adminStep2" style="display:none;">
+      <h3 class="text-center mb-4">Contact Information</h3>
+      <div class="form-group">
+        <label for="adminLGA">State</label>
+        <select class="form-control" id="adminLGA" name="adminLGA" required>
+          <option value="">Select State</option>
+          <!-- Add LGA options here -->
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="adminWard">Local Government Area (LGA)</label>
+        <select class="form-control" id="adminWard" name="adminWard" required>
+          <option value="">Select LGA</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="adminAddress">Address</label>
+        <textarea class="form-control" id="adminAddress" name="adminAddress" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="adminPhone">Phone Number</label>
+        <input type="tel" class="form-control" id="adminPhone" name="adminPhone" required>
+      </div>
+      <div class="form-group">
+        <label for="adminEmail">Email</label>
+        <input type="email" class="form-control" id="adminEmail" name="adminEmail" required>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-content" id="adminStep3" style="display:none;">
+      <h3 class="text-center mb-4">Additional Details</h3>
+      <div class="form-group">
+        <label for="adminID">ID Number</label>
+        <input type="text" class="form-control" id="adminID" name="adminID" required>
+      </div>
+      <div class="form-group">
+        <label for="adminRole">Admin Role</label>
+        <input type="text" class="form-control" id="adminRole" name="adminRole" required>
+      </div>
+      <div class="form-group">
+        <label for="adminPhoto">Photo</label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="adminPhoto" name="adminPhoto" accept="image/*" required>
+          <label class="custom-file-label" for="adminPhoto">Choose file</label>
+        </div>
+        <img id="adminPhotoPreview" src="#" alt="Admin Photo" style="display:none; max-width: 100%; margin-top: 10px;">
+      </div>
+    </div>
+
+    <div class="form-navigation">
+      <button type="button" class="btn btn-secondary" id="adminPrevBtn" style="display:none;">Previous</button>
+      <button type="button" class="btn btn-primary" id="adminNextBtn">Next</button>
+      <button type="submit" class="btn btn-success" id="adminSubmitBtn" style="display:none;">Submit</button>
+    </div>
+
   <!-- View Beneficiary Popup -->
   <div class="view-popup animate__animated animate__fadeIn" id="viewPopup">
     <span class="close" id="closeViewPopup">&times;</span>
