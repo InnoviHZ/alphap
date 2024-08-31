@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['type'] = $type; // Store admin type in session
 
             // Redirect to the dashboard
-            header("Location: ./m-dashboard.php");
+            header("Location: ./admin/manager-d/m-dashboard.php");
             exit();
         } else {
             // Incorrect password
