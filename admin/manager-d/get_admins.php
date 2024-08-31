@@ -1,16 +1,16 @@
 <?php
 include "../../assets/include/config.php";
 
-$sql = "SELECT id, name, email, date_registered FROM _PDManagers";
+$sql = "SELECT id, name, email, type AS admin_type FROM _PDAdmin";
 $result = $conn->query($sql);
 
-$managers = array();
+$admins = array();
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        $managers[] = $row;
+        $admins[] = $row;
     }
 }
 
-echo json_encode($managers);
+echo json_encode($admins);
 $conn->close();
 ?>
