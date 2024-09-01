@@ -1,512 +1,811 @@
-<?php
-  session_start();
-  include "./assets/include/config.php";
-  ini_set('display_errors', 1);
-  ini_set('display_startup_errors', 1);
-  error_reporting(E_ALL);
-  
-  
-?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Manager Dashboard | Orphanage Care</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <title>Ela - Bootstrap Admin Dashboard Template</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <!-- AdminLTE CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css">
-  <!-- DataTables CSS -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.bootstrap4.min.css">
-  
-  <style>
-    .custom-navbar { background-color: #2c3e50; }
-    .custom-sidebar { background-color: #34495e; }
-    .custom-brand { color: #ecf0f1 !important; }
-    .custom-card { border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-    .registration-popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1000;
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      max-width: 500px;
-      width: 100%;
-    }
-    .registration-popup .close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-    }
-    @media (max-width: 768px) {
-      .registration-popup { width: 90%; }
-    }
-    .table-actions { display: flex; justify-content: space-between; margin-bottom: 1rem; }
-  </style>
+    <link href="css/lib/chartist/chartist.min.css" rel="stylesheet">
+	<link href="css/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="css/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <!-- Bootstrap Core CSS -->
+    <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/helper.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+    <!--[if lt IE 9]>
+    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark custom-navbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-    </ul>
-
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#" id="registerBtn" role="button">
-          <i class="fas fa-user-plus"></i> Register Beneficiary
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="fas fa-user-cog"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-user mr-2"></i> Profile
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-cog mr-2"></i> Settings
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-sign-out-alt mr-2"></i> Sign Out
-          </a>
-        </div>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary custom-sidebar elevation-4">
-    <a href="index3.html" class="brand-link custom-brand">
-      <img src="./assets/images/logo.png" alt="Orphanage Care Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Orphanage Care</span>
-    </a>
-
-    <div class="sidebar">
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="./assets/images/admin-avatar.png" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">John Doe</a>
-          <span class="badge badge-info">Manager</span>
-        </div>
-      </div>
-
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>Beneficiaries</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-calendar-alt"></i>
-              <p>Events</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-hand-holding-heart"></i>
-              <p>Donations</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-bar"></i>
-              <p>Reports</p>
-            </a>
-          </li>
-          <li class="nav-header">IMPORTANT LINKS</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-file-alt"></i>
-              <p>Policies</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-phone"></i>
-              <p>Emergency Contacts</p>
-            </a>
-          </li>
-        </ul>
-      </nav>
+<body class="fix-header fix-sidebar">
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
     </div>
-  </aside>
+    <!-- Main wrapper  -->
+    <div id="main-wrapper">
+        <!-- header header  -->
+        <div class="header">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- Logo -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon -->
+                        <b><img src="images/logo.png" alt="homepage" class="dark-logo" /></b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span><img src="images/logo-text.png" alt="homepage" class="dark-logo" /></span>
+                    </a>
+                </div>
+                <!-- End Logo -->
+                <div class="navbar-collapse">
+                    <!-- toggle and nav items -->
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <!-- Messages -->
+                        <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-th-large"></i></a>
+                            <div class="dropdown-menu animated zoomIn">
+                                <ul class="mega-dropdown-menu row">
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Manager Dashboard</h1>
-          </div>
+
+                                    <li class="col-lg-3  m-b-30">
+                                        <h4 class="m-b-20">CONTACT US</h4>
+                                        <!-- Contact -->
+                                        <form>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="exampleInputname1" placeholder="Enter Name"> </div>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" placeholder="Enter email"> </div>
+                                            <div class="form-group">
+                                                <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="Message"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-info">Submit</button>
+                                        </form>
+                                    </li>
+                                    <li class="col-lg-3 col-xlg-3 m-b-30">
+                                        <h4 class="m-b-20">List style</h4>
+                                        <!-- List style -->
+                                        <ul class="list-style-none">
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="col-lg-3 col-xlg-3 m-b-30">
+                                        <h4 class="m-b-20">List style</h4>
+                                        <!-- List style -->
+                                        <ul class="list-style-none">
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="col-lg-3 col-xlg-3 m-b-30">
+                                        <h4 class="m-b-20">List style</h4>
+                                        <!-- List style -->
+                                        <ul class="list-style-none">
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- End Messages -->
+                    </ul>
+                    <!-- User profile and search -->
+                    <ul class="navbar-nav my-lg-0">
+
+                        <!-- Search -->
+                        <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <form class="app-search">
+                                <input type="text" class="form-control" placeholder="Search here"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                        </li>
+                        <!-- Comment -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
+								<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+							</a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">Notifications</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-danger btn-circle m-r-10"><i class="fa fa-link"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>This is title</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-success btn-circle m-r-10"><i class="ti-calendar"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>This is another title</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-info btn-circle m-r-10"><i class="ti-settings"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>This is title</h5> <span class="mail-desc">You can customize this template as you want</span> <span class="time">9:08 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-primary btn-circle m-r-10"><i class="ti-user"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>This is another title</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- End Comment -->
+                        <!-- Messages -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope"></i>
+								<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+							</a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">You have 4 new messages</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="user-img"> <img src="images/users/5.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                                <div class="mail-contnet">
+                                                    <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="user-img"> <img src="images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                                                <div class="mail-contnet">
+                                                    <h5>John Doe</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="user-img"> <img src="images/users/3.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
+                                                <div class="mail-contnet">
+                                                    <h5>Mr. John</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="user-img"> <img src="images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
+                                                <div class="mail-contnet">
+                                                    <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>See all e-Mails</strong> <i class="fa fa-angle-right"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- End Messages -->
+                        <!-- Profile -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/5.jpg" alt="user" class="profile-pic" /></a>
+                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                <ul class="dropdown-user">
+                                    <li><a href="#"><i class="ti-user"></i> Profile</a></li>
+                                    <li><a href="#"><i class="ti-wallet"></i> Balance</a></li>
+                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                                    <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
+                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
-      </div>
-    </div>
+        <!-- End header header -->
+        <!-- Left Sidebar  -->
+        <div class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-devider"></li>
+                        <li class="nav-label">Home</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard <span class="label label-rouded label-primary pull-right">2</span></span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="index.html">Ecommerce </a></li>
+                                <li><a href="index1.html">Analytics </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-label">Apps</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Email</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="email-compose.html">Compose</a></li>
+                                <li><a href="email-read.html">Read</a></li>
+                                <li><a href="email-inbox.html">Inbox</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Charts</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="chart-flot.html">Flot</a></li>
+                                <li><a href="chart-morris.html">Morris</a></li>
+                                <li><a href="chart-chartjs.html">ChartJs</a></li>
+                                <li><a href="chart-chartist.html">Chartist </a></li>
+                                <li><a href="chart-amchart.html">AmChart</a></li>
+                                <li><a href="chart-echart.html">EChart</a></li>
+                                <li><a href="chart-sparkline.html">Sparkline</a></li>
+                                <li><a href="chart-peity.html">Peity</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-label">Features</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Bootstrap UI <span class="label label-rouded label-warning pull-right">6</span></span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="ui-alert.html">Alert</a></li>
+                                <li><a href="ui-button.html">Button</a></li>
+                                <li><a href="ui-dropdown.html">Dropdown</a></li>
+                                <li><a href="ui-progressbar.html">Progressbar</a></li>
+                                <li><a href="ui-tab.html">Tab</a></li>
+                                <li><a href="ui-typography.html">Typography</a></li>
+                            </ul>
+                        </li>
+						<li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Components <span class="label label-rouded label-danger pull-right">6</span></span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="uc-calender.html">Calender</a></li>
+                                <li><a href="uc-datamap.html">Datamap</a></li>
+                                <li><a href="uc-nestedable.html">Nestedable</a></li>
+                                <li><a href="uc-sweetalert.html">Sweetalert</a></li>
+                                <li><a href="uc-toastr.html">Toastr</a></li>
+                                <li><a href="uc-weather.html">Weather</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Forms</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="form-basic.html">Basic Forms</a></li>
+                                <li><a href="form-layout.html">Form Layout</a></li>
+                                <li><a href="form-validation.html">Form Validation</a></li>
+                                <li><a href="form-editor.html">Editor</a></li>
+                                <li><a href="form-dropzone.html">Dropzone</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Tables</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="table-bootstrap.html">Basic Tables</a></li>
+                                <li><a href="table-datatable.html">Data Tables</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-label">Layout</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Layout</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="layout-blank.html">Blank</a></li>
+                                <li><a href="layout-boxed.html">Boxed</a></li>
+                                <li><a href="layout-fix-header.html">Fix Header</a></li>
+                                <li><a href="layout-fix-sidebar.html">Fix Sidebar</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-label">EXTRA</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Pages <span class="label label-rouded label-success pull-right">8</span></span></a>
+                            <ul aria-expanded="false" class="collapse">
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-info custom-card">
-              <div class="inner">
-                <h3>150</h3>
-                <p>Active Volunteers</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-hands-helping"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <li><a href="#" class="has-arrow">Authentication <span class="label label-rounded label-success">6</span></a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="page-login.html">Login</a></li>
+                                        <li><a href="page-register.html">Register</a></li>
+                                        <li><a href="page-invoice.html">Invoice</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#" class="has-arrow">Error Pages</a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="page-error-400.html">400</a></li>
+                                        <li><a href="page-error-403.html">403</a></li>
+                                        <li><a href="page-error-404.html">404</a></li>
+                                        <li><a href="page-error-500.html">500</a></li>
+                                        <li><a href="page-error-503.html">503</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-map-marker"></i><span class="hide-menu">Maps</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="map-google.html">Google</a></li>
+                                <li><a href="map-vector.html">Vector</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-level-down"></i><span class="hide-menu">Multi level dd</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="#">item 1.1</a></li>
+                                <li><a href="#">item 1.2</a></li>
+                                <li> <a class="has-arrow" href="#" aria-expanded="false">Menu 1.3</a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="#">item 1.3.1</a></li>
+                                        <li><a href="#">item 1.3.2</a></li>
+                                        <li><a href="#">item 1.3.3</a></li>
+                                        <li><a href="#">item 1.3.4</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">item 1.4</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
             </div>
-          </div>
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-success custom-card">
-              <div class="inner">
-                <h3>53</h3>
-                <p>New Users</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-user-plus"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-warning custom-card">
-              <div class="inner">
-                <h3>$50,000</h3>
-                <p>Total Donations</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-dollar-sign"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-danger custom-card">
-              <div class="inner">
-                <h3>5</h3>
-                <p>Upcoming Events</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-calendar-alt"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
+            <!-- End Sidebar scroll-->
         </div>
-
-        <!-- Beneficiaries Table -->
-        <div class="row">
-          <div class="col-12">
-            <div class="card custom-card">
-              <div class="card-header">
-                <h3 class="card-title">Registered Beneficiaries</h3>
-              </div>
-              <div class="card-body">
-                <table id="beneficiariesTable" class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Password</th>
-                      <th>Address</th>
-                      <th>Phone</th>
-                      <th>Registered By</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <!-- Table body will be populated dynamically -->
-                  </tbody>
-                </table>
-              </div>
+        <!-- End Left Sidebar  -->
+        <!-- Page wrapper  -->
+        <div class="page-wrapper">
+            <!-- Bread crumb -->
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-primary">Dashboard</h3> </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                </div>
             </div>
-          </div>
+            <!-- End Bread crumb -->
+            <!-- Container fluid  -->
+            <div class="container-fluid">
+                <!-- Start Page Content -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card bg-primary p-20">
+                            <div class="media widget-ten">
+                                <div class="media-left meida media-middle">
+                                    <span><i class="ti-bag f-s-40"></i></span>
+                                </div>
+                                <div class="media-body media-text-right">
+                                    <h2 class="color-white">278</h2>
+                                    <p class="m-b-0">New Posts</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-pink p-20">
+                            <div class="media widget-ten">
+                                <div class="media-left meida media-middle">
+                                    <span><i class="ti-comment f-s-40"></i></span>
+                                </div>
+                                <div class="media-body media-text-right">
+                                    <h2 class="color-white">278</h2>
+                                    <p class="m-b-0">New Comment</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-success p-20">
+                            <div class="media widget-ten">
+                                <div class="media-left meida media-middle">
+                                    <span><i class="ti-vector f-s-40"></i></span>
+                                </div>
+                                <div class="media-body media-text-right">
+                                    <h2 class="color-white">$27647</h2>
+                                    <p class="m-b-0">Bounce Rate</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-danger p-20">
+                            <div class="media widget-ten">
+                                <div class="media-left meida media-middle">
+                                    <span><i class="ti-location-pin f-s-40"></i></span>
+                                </div>
+                                <div class="media-body media-text-right">
+                                    <h2 class="color-white">278</h2>
+                                    <p class="m-b-0">Total Visitor</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Sales</h4>
+                            </div>
+                            <div class="sales-chart">
+                                <div class="ct-bar-chart" style="height:350px"></div>
+                            </div>
+                        </div>
+                        <!-- /# card -->
+                    </div>
+                    <!-- /# column -->
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Visitor in Device</h4>
+                            </div>
+                            <div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-hover ">
+										<thead>
+											<tr>
+												<th>Device</th>
+												<th>Visits</th>
+												<th>Avg. time</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Unknown</td>
+												<td>2,456</td>
+												<td>00:02:36</td>
+											</tr>
+											<tr>
+												<td>Apple iPad</td>
+												<td>1,006</td>
+												<td>00:03:41</td>
+											</tr>
+											<tr>
+												<td>Apple iPhone</td>
+												<td>68</td>
+												<td>00:04:10</td>
+											</tr>
+											<tr>
+												<td>HTC Desire</td>
+												<td>38</td>
+												<td>00:01:40</td>
+											</tr>
+											<tr>
+												<td>Samsung</td>
+												<td>20</td>
+												<td>00:04:54</td>
+											</tr>
+											<tr>
+												<td>Apple iPad</td>
+												<td>1,006</td>
+												<td>00:03:41</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+                        </div>
+                    </div>
+				</div>
+				<div class="row">
+                    <div class="col-lg-6">
+                        <div class="card nestable-cart">
+                            <div class="card-title">
+                                <h4>World Map</h4>
+
+                            </div>
+                            <div class="datamap">
+                                <div id="world-datamap"></div>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Visitor</h4>
+                                <div class="ct-svg-chart" style="height:420px"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /# column -->
+                </div>
+                <!-- /# row -->
+
+                <div class="row">
+
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Project</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="current-progress">
+                                    <div class="progress-content">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="progress-text">Website</div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div class="current-progressbar">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-primary w-40" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                                            40%
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-content">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="progress-text">Android</div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div class="current-progressbar">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-primary w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                                                            60%
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-content">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="progress-text">Ios</div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div class="current-progressbar">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-primary w-70" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                                            70%
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-content">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="progress-text">Mobile</div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div class="current-progressbar">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-primary w-90" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                                            90%
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-content">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="progress-text">Android</div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div class="current-progressbar">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-primary w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                                                            60%
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-content">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="progress-text">Ios</div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div class="current-progressbar">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-primary w-70" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                                            70%
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-content">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="progress-text">Mobile</div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div class="current-progressbar">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-primary w-90" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                                            90%
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /# column -->
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Messages</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="recent-meaasge">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">john doe</h4>
+                                            <div class="meaasge-date">15 minutes Ago</div>
+                                            <p class="f-s-12">We are happy about your service </p>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#"><img alt="..." src="images/avatar/2.jpg" class="media-object"></a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">Mr. John</h4>
+                                            <div class="meaasge-date">40 minutes ago</div>
+                                            <p class="f-s-12">Quick service and good serve </p>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#"><img alt="..." src="images/avatar/3.jpg" class="media-object"></a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">Mr. Michael</h4>
+                                            <div class="meaasge-date">1 minutes ago</div>
+                                            <p class="f-s-12">We like your birthday cake </p>
+                                        </div>
+                                    </div>
+                                    <div class="media no-border">
+                                        <div class="media-left">
+                                            <a href="#"><img alt="..." src="images/avatar/2.jpg" class="media-object"></a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">Mr. John</h4>
+                                            <div class="meaasge-date">40 minutes ago</div>
+                                            <p class="f-s-12">Quick service and good serve </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Todo</h4>
+                            </div>
+                            <div class="todo-list">
+                                <div class="tdl-holder">
+                                    <div class="tdl-content">
+                                        <ul>
+                                            <li class="color-primary">
+                                                <label>
+                                                <input type="checkbox"><i class="bg-primary"></i><span>Post three to six times on Twitter.</span>
+                                                <a href='#' class="ti-close"></a>
+                                            </label>
+                                            </li>
+                                            <li class="color-success">
+                                                <label>
+                                                <input type="checkbox" checked><i class="bg-success"></i><span>Post one to two times on Facebook.</span>
+                                                <a href='#' class="ti-close"></a>
+                                            </label>
+                                            </li>
+                                            <li class="color-warning">
+                                                <label>
+                                                <input type="checkbox" checked><i class="bg-warning"></i><span>Follow back those who follow you</span>
+                                                <a href='#' class="ti-close"></a>
+                                            </label>
+                                            </li>
+                                            <li class="color-danger">
+                                                <label>
+                                                <input type="checkbox" checked><i class="bg-danger"></i><span>Connect with one new person</span>
+                                                <a href='#' class="ti-close"></a>
+                                            </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <input type="text" class="tdl-new form-control" placeholder="Type here">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- End PAge Content -->
+            </div>
+            <!-- End Container fluid  -->
+            <!-- Main Footer -->
+            <footer class="main-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong>Copyright &copy; 2024 <a href="#">Orphanage Care</a>.</strong>
+                            All rights reserved.
+                        </div>
+                        <div class="col-md-6">
+                            <div class="float-right d-none d-sm-inline-block">
+                                <b>Version</b> 1.0.0 | 
+                                <span>Powered by <a href="https://infinitisoft.com.ng/">InfnitiSoft</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- End Main Footer -->
         </div>
-      </div>
+        <!-- End Page wrapper  -->
     </div>
-  </div>
+    <!-- End Wrapper -->
+    <!-- All Jquery -->
+    <script src="js/lib/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script src="js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
 
-  <!-- Registration Popup -->
-  <div class="registration-popup" id="registrationPopup">
-    <span class="close" id="closePopup">&times;</span>
-    <h2>Register New Beneficiary</h2>
-    <form id="beneficiaryForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                      <label for="fullName">Full Name of Late</label>
-                      <input type="text" class="form-control" id="fullName" name="fullName" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="yod">Year of Death</label>
-                      <input type="date" class="form-control" id="yod" name="yod" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="fullNameB">Full Name of Beneficiary</label>
-                      <input type="text" class="form-control" id="fullNameB" name="fullNameB" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="dob">Date of Birth</label>
-                      <input type="date" class="form-control" id="dob" name="dob" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="gender">Gender</label>
-                      <select class="form-control" id="gender" name="gender" required>
-                        <option value="">Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="lga">Local Government Area (LGA)</label>
-                      <select class="form-control" id="lga" name="lga" onchange="updateWards()" required>
-                        <option value="">Select LGA</option>
-                        <option value="Alkaleri">Alkaleri</option>
-                        <option value="Bauchi">Bauchi</option>
-                        <option value="Bogoro">Bogoro</option>
-                        <option value="Dambam">Dambam</option>
-                        <option value="Dass">Dass</option>
-                        <option value="Ganjuwa">Ganjuwa</option>
-                        <option value="Giade">Giade</option>
-                        <option value="Itas/Gadau">Itas/Gadau</option>
-                        <option value="Jama'are">Jama'are</option>
-                        <option value="Katagum">Katagum</option>
-                        <option value="Kirfi">Kirfi</option>
-                        <option value="Misau">Misau</option>
-                        <option value="Ningi">Ningi</option>
-                        <option value="Shira">Shira</option>
-                        <option value="Tafawa Balewa">Tafawa Balewa</option>
-                        <option value="Toro">Toro</option>
-                        <option value="Warji">Warji</option>
-                        <option value="Zaki">Zaki</option>
-                        <option value="Darazo">Darazo</option>
-                        <option value="Gamawa">Gamawa</option>
-                        <!-- Add more LGAs here -->
-                      </select>
-                    </div>
 
-                    <div class="form-group">
-                      <label for="ward">Ward</label>
-                      <select class="form-control" id="ward" name="ward" required>
-                        <option value="">Select Ward</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="address">Address</label>
-                      <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label for="opNumber">Number of Orphans</label>
-                      <input type="text" class="form-control" id="opNumber" name="opNumber" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="phone">Phone Number</label>
-                      <input type="tel" class="form-control" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="email">Email</label>
-                      <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="idNumber">ID Number</label>
-                      <input type="text" class="form-control" id="idNumber" name="idNumber" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="benefitType">Benefit Type</label>
-                      <select class="form-control" id="benefitType" name="benefitType" required>
-                        <option value="">Select Benefit Type</option>
-                        <option value="financial">Financial Aid</option>
-                        <option value="medical">Medical Assistance</option>
-                        <option value="education">Education Support</option>
-                        <option value="housing">Housing Assistance</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="photo">Photo</label>
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="photo" name="photo" accept="image/*" required>
-                        <label class="custom-file-label" for="photo">Choose file</label>
-                      </div>
-                      <img id="imagePreview" src="#" alt="Image Preview" style="display:none;">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Register Beneficiary</button>
-                  </form>
-  </div>
+    <script src="js/lib/datamap/d3.min.js"></script>
+    <script src="js/lib/datamap/topojson.js"></script>
+    <script src="js/lib/datamap/datamaps.world.min.js"></script>
+    <script src="js/lib/datamap/datamap-init.js"></script>
 
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="#">Orphanage Care</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 1.0.0
-    </div>
-  </footer>
-</div>
+    <script src="js/lib/weather/jquery.simpleWeather.min.js"></script>
+    <script src="js/lib/weather/weather-init.js"></script>
+    <script src="js/lib/owl-carousel/owl.carousel.min.js"></script>
+    <script src="js/lib/owl-carousel/owl.carousel-init.js"></script>
 
-<!-- REQUIRED SCRIPTS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/adminlte.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.bootstrap4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
 
-<script>
-$(document).ready(function() {
-  // Initialize DataTable
-  var table = $('#beneficiariesTable').DataTable({
-    dom: 'Bfrtip',
-    buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
-    ajax: {
-      url: 'get_beneficiaries.php',
-      dataSrc: ''
-    },
-    columns: [
-      { data: 'id' },
-      { data: 'full_name' },
-      { data: 'email' },
-      { data: 'id_number' },
-      { data: 'address' },
-      { data: 'phone' },
-      { data: 'reg_by' },
-      {
-        data: null,
-        render: function(data, type, row) {
-          return '<button class="btn btn-sm btn-info edit-btn"><i class="fas fa-edit"></i></button>' +
-                 '<button class="btn btn-sm btn-success update-btn"><i class="fas fa-sync-alt"></i></button>' +
-                 '<button class="btn btn-sm btn-danger delete-btn"><i class="fas fa-trash"></i></button>';
-        }
-      }
-    ]
-  });
+    <script src="js/lib/chartist/chartist.min.js"></script>
+    <script src="js/lib/chartist/chartist-plugin-tooltip.min.js"></script>
+    <script src="js/lib/chartist/chartist-init.js"></script>
+    <!--Custom JavaScript -->
+    <script src="js/custom.min.js"></script>
 
-  // Registration popup functionality
-  $('#registerBtn').click(function() {
-    $('#registrationPopup').show();
-  });
-
-  $('#closePopup').click(function() {
-    $('#registrationPopup').hide();
-  });
-
-  // Handle form submission
-  $('#registrationForm').submit(function(e) {
-    e.preventDefault();
-    $.ajax({
-      url: 'register_beneficiary.php',
-      method: 'POST',
-      data: $(this).serialize(),
-      success: function(response) {
-        alert('Beneficiary registered successfully!');
-        $('#registrationPopup').hide();
-        table.ajax.reload();
-      },
-      error: function() {
-        alert('Error registering beneficiary.');
-      }
-    });
-  });
-
-  // Edit functionality
-  $('#beneficiariesTable').on('click', '.edit-btn', function() {
-    var data = table.row($(this).parents('tr')).data();
-    // Populate form with data
-    $('#full_name').val(data.full_name);
-    $('#email').val(data.email);
-    $('#id_number').val(data.id_number);
-    $('#address').val(data.address);
-    $('#phone').val(data.phone);
-    $('#registrationPopup').show();
-  });
-
-  // Update functionality
-  $('#beneficiariesTable').on('click', '.update-btn', function() {
-    var data = table.row($(this).parents('tr')).data();
-    $.ajax({
-      url: 'update_beneficiary.php',
-      method: 'POST',
-      data: { id: data.id },
-      success: function(response) {
-        alert('Beneficiary updated successfully!');
-        table.ajax.reload();
-      },
-      error: function() {
-        alert('Error updating beneficiary.');
-      }
-    });
-  });
-  
-  // sing out
-  $('#signOutBtn').click(function() {
-  $.ajax({
-    url: 'sign_out.php',
-    method: 'POST',
-    success: function(response) {
-      window.location.href = 'index.php';
-    },
-    error: function() {
-      alert('Error signing out.');
-    }
-  });
-});
-
-  // Delete functionality
-  $('#beneficiariesTable').on('click', '.delete-btn', function() {
-    var data = table.row($(this).parents('tr')).data();
-    if (confirm('Are you sure you want to delete this beneficiary?')) {
-      $.ajax({
-        url: 'delete_beneficiary.php',
-        method: 'POST',
-        data: { id: data.id },
-        success: function(response) {
-          alert('Beneficiary deleted successfully!');
-          table.ajax.reload();
-        },
-        error: function() {
-            alert('Error deleting beneficiary.');
-        }
-      });
-    }
-  });
-});
-  </script>
 </body>
+
 </html>
