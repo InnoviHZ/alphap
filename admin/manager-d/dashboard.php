@@ -181,94 +181,136 @@
             </nav>
         </div>
         <!-- End header header -->
-        <!-- Left Sidebar -->
-<div class="left-sidebar">
-    <!-- Sidebar scroll-->
-    <div class="scroll-sidebar">
-        <!-- Sidebar navigation-->
-        <nav class="sidebar-nav">
-            <ul id="sidebarnav">
-                <li class="nav-devider"></li>
-                <li class="nav-label">Main</li>
-                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard Overview</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="dashboard-overview.html">Overview</a></li>
-                    </ul>
-                </li>
-                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Orphan Management</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="orphan-list.html">Orphan List</a></li>
-                        <li><a href="add-orphan.html">Add Orphan</a></li>
-                        <li><a href="orphan-details.html">Orphan Details</a></li>
-                    </ul>
-                </li>
-                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Staff Management</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="staff-list.html">Staff List</a></li>
-                        <li><a href="add-staff.html">Add Staff</a></li>
-                        <li><a href="staff-details.html">Staff Details</a></li>
-                    </ul>
-                </li>
-                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-dollar"></i><span class="hide-menu">Donations</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="donation-list.html">Donation List</a></li>
-                        <li><a href="add-donation.html">Add Donation</a></li>
-                        <li><a href="donation-details.html">Donation Details</a></li>
-                    </ul>
-                </li>
-                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-cubes"></i><span class="hide-menu">Inventory Management</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="inventory-list.html">Inventory List</a></li>
-                        <li><a href="add-inventory.html">Add Inventory</a></li>
-                        <li><a href="inventory-details.html">Inventory Details</a></li>
-                    </ul>
-                </li>
-                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-calendar"></i><span class="hide-menu">Events & Activities</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="events-list.html">Events List</a></li>
-                        <li><a href="add-event.html">Add Event</a></li>
-                        <li><a href="event-details.html">Event Details</a></li>
-                    </ul>
-                </li>
-                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-graduation-cap"></i><span class="hide-menu">Education & Health</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="education.html">Education</a></li>
-                        <li><a href="health.html">Health</a></li>
-                    </ul>
-                </li>
-                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-line-chart"></i><span class="hide-menu">Reports & Analytics</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="reports.html">Reports</a></li>
-                        <li><a href="analytics.html">Analytics</a></li>
-                    </ul>
-                </li>
-                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">User Management</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="user-list.html">User List</a></li>
-                        <li><a href="add-user.html">Add User</a></li>
-                    </ul>
-                </li>
-                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-bell"></i><span class="hide-menu">Messages & Notifications</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="messages.html">Messages</a></li>
-                        <li><a href="notifications.html">Notifications</a></li>
-                    </ul>
-                </li>
-                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-cog"></i><span class="hide-menu">Settings</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="general-settings.html">General Settings</a></li>
-                        <li><a href="profile-settings.html">Profile Settings</a></li>
-                    </ul>
-                </li>
-                <li><a href="logout.html"><i class="fa fa-sign-out"></i><span class="hide-menu">Logout</span></a></li>
-            </ul>
-        </nav>
-        <!-- End Sidebar navigation -->
-    </div>
-    <!-- End Sidebar scroll-->
-</div>
-<!-- End Left Sidebar -->
+        <!-- Left Sidebar  -->
+        <div class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-devider"></li>
+                        <li class="nav-label">Home</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard <span class="label label-rouded label-primary pull-right">2</span></span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="index.html">Ecommerce </a></li>
+                                <li><a href="index1.html">Analytics </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-label">Apps</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Email</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="email-compose.html">Compose</a></li>
+                                <li><a href="email-read.html">Read</a></li>
+                                <li><a href="email-inbox.html">Inbox</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Charts</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="chart-flot.html">Flot</a></li>
+                                <li><a href="chart-morris.html">Morris</a></li>
+                                <li><a href="chart-chartjs.html">ChartJs</a></li>
+                                <li><a href="chart-chartist.html">Chartist </a></li>
+                                <li><a href="chart-amchart.html">AmChart</a></li>
+                                <li><a href="chart-echart.html">EChart</a></li>
+                                <li><a href="chart-sparkline.html">Sparkline</a></li>
+                                <li><a href="chart-peity.html">Peity</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-label">Features</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Bootstrap UI <span class="label label-rouded label-warning pull-right">6</span></span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="ui-alert.html">Alert</a></li>
+                                <li><a href="ui-button.html">Button</a></li>
+                                <li><a href="ui-dropdown.html">Dropdown</a></li>
+                                <li><a href="ui-progressbar.html">Progressbar</a></li>
+                                <li><a href="ui-tab.html">Tab</a></li>
+                                <li><a href="ui-typography.html">Typography</a></li>
+                            </ul>
+                        </li>
+						<li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Components <span class="label label-rouded label-danger pull-right">6</span></span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="uc-calender.html">Calender</a></li>
+                                <li><a href="uc-datamap.html">Datamap</a></li>
+                                <li><a href="uc-nestedable.html">Nestedable</a></li>
+                                <li><a href="uc-sweetalert.html">Sweetalert</a></li>
+                                <li><a href="uc-toastr.html">Toastr</a></li>
+                                <li><a href="uc-weather.html">Weather</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Forms</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="form-basic.html">Basic Forms</a></li>
+                                <li><a href="form-layout.html">Form Layout</a></li>
+                                <li><a href="form-validation.html">Form Validation</a></li>
+                                <li><a href="form-editor.html">Editor</a></li>
+                                <li><a href="form-dropzone.html">Dropzone</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Tables</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="table-bootstrap.html">Basic Tables</a></li>
+                                <li><a href="table-datatable.html">Data Tables</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-label">Layout</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Layout</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="layout-blank.html">Blank</a></li>
+                                <li><a href="layout-boxed.html">Boxed</a></li>
+                                <li><a href="layout-fix-header.html">Fix Header</a></li>
+                                <li><a href="layout-fix-sidebar.html">Fix Sidebar</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-label">EXTRA</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Pages <span class="label label-rouded label-success pull-right">8</span></span></a>
+                            <ul aria-expanded="false" class="collapse">
 
+                                <li><a href="#" class="has-arrow">Authentication <span class="label label-rounded label-success">6</span></a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="page-login.html">Login</a></li>
+                                        <li><a href="page-register.html">Register</a></li>
+                                        <li><a href="page-invoice.html">Invoice</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#" class="has-arrow">Error Pages</a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="page-error-400.html">400</a></li>
+                                        <li><a href="page-error-403.html">403</a></li>
+                                        <li><a href="page-error-404.html">404</a></li>
+                                        <li><a href="page-error-500.html">500</a></li>
+                                        <li><a href="page-error-503.html">503</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-map-marker"></i><span class="hide-menu">Maps</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="map-google.html">Google</a></li>
+                                <li><a href="map-vector.html">Vector</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-level-down"></i><span class="hide-menu">Multi level dd</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="#">item 1.1</a></li>
+                                <li><a href="#">item 1.2</a></li>
+                                <li> <a class="has-arrow" href="#" aria-expanded="false">Menu 1.3</a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="#">item 1.3.1</a></li>
+                                        <li><a href="#">item 1.3.2</a></li>
+                                        <li><a href="#">item 1.3.3</a></li>
+                                        <li><a href="#">item 1.3.4</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">item 1.4</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </div>
+        <!-- End Left Sidebar  -->
         <!-- Page wrapper  -->
         <div class="page-wrapper">
             <!-- Bread crumb -->
@@ -341,316 +383,8 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-title">
-                                <h4>Sales</h4>
-                            </div>
-                            <div class="sales-chart">
-                                <div class="ct-bar-chart" style="height:350px"></div>
-                            </div>
-                        </div>
-                        <!-- /# card -->
-                    </div>
-                    <!-- /# column -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-title">
-                                <h4>Visitor in Device</h4>
-                            </div>
-                            <div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-hover ">
-										<thead>
-											<tr>
-												<th>Device</th>
-												<th>Visits</th>
-												<th>Avg. time</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Unknown</td>
-												<td>2,456</td>
-												<td>00:02:36</td>
-											</tr>
-											<tr>
-												<td>Apple iPad</td>
-												<td>1,006</td>
-												<td>00:03:41</td>
-											</tr>
-											<tr>
-												<td>Apple iPhone</td>
-												<td>68</td>
-												<td>00:04:10</td>
-											</tr>
-											<tr>
-												<td>HTC Desire</td>
-												<td>38</td>
-												<td>00:01:40</td>
-											</tr>
-											<tr>
-												<td>Samsung</td>
-												<td>20</td>
-												<td>00:04:54</td>
-											</tr>
-											<tr>
-												<td>Apple iPad</td>
-												<td>1,006</td>
-												<td>00:03:41</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-                        </div>
-                    </div>
-				</div>
-				<div class="row">
-                    <div class="col-lg-6">
-                        <div class="card nestable-cart">
-                            <div class="card-title">
-                                <h4>World Map</h4>
-
-                            </div>
-                            <div class="datamap">
-                                <div id="world-datamap"></div>
-                            </div>
-                        </div>
-                    </div>
-					<div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-block">
-                                <h4 class="card-title">Visitor</h4>
-                                <div class="ct-svg-chart" style="height:420px"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /# column -->
-                </div>
-                <!-- /# row -->
-
-                <div class="row">
-
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-title">
-                                <h4>Project</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="current-progress">
-                                    <div class="progress-content">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="progress-text">Website</div>
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <div class="current-progressbar">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-primary w-40" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                                            40%
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="progress-content">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="progress-text">Android</div>
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <div class="current-progressbar">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-primary w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                                                            60%
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="progress-content">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="progress-text">Ios</div>
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <div class="current-progressbar">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-primary w-70" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                                            70%
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="progress-content">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="progress-text">Mobile</div>
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <div class="current-progressbar">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-primary w-90" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                                            90%
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="progress-content">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="progress-text">Android</div>
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <div class="current-progressbar">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-primary w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                                                            60%
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="progress-content">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="progress-text">Ios</div>
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <div class="current-progressbar">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-primary w-70" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                                            70%
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="progress-content">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="progress-text">Mobile</div>
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <div class="current-progressbar">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-primary w-90" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                                            90%
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /# column -->
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-title">
-                                <h4>Messages</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="recent-meaasge">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">john doe</h4>
-                                            <div class="meaasge-date">15 minutes Ago</div>
-                                            <p class="f-s-12">We are happy about your service </p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img alt="..." src="images/avatar/2.jpg" class="media-object"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Mr. John</h4>
-                                            <div class="meaasge-date">40 minutes ago</div>
-                                            <p class="f-s-12">Quick service and good serve </p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img alt="..." src="images/avatar/3.jpg" class="media-object"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Mr. Michael</h4>
-                                            <div class="meaasge-date">1 minutes ago</div>
-                                            <p class="f-s-12">We like your birthday cake </p>
-                                        </div>
-                                    </div>
-                                    <div class="media no-border">
-                                        <div class="media-left">
-                                            <a href="#"><img alt="..." src="images/avatar/2.jpg" class="media-object"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Mr. John</h4>
-                                            <div class="meaasge-date">40 minutes ago</div>
-                                            <p class="f-s-12">Quick service and good serve </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-title">
-                                <h4>Todo</h4>
-                            </div>
-                            <div class="todo-list">
-                                <div class="tdl-holder">
-                                    <div class="tdl-content">
-                                        <ul>
-                                            <li class="color-primary">
-                                                <label>
-                                                <input type="checkbox"><i class="bg-primary"></i><span>Post three to six times on Twitter.</span>
-                                                <a href='#' class="ti-close"></a>
-                                            </label>
-                                            </li>
-                                            <li class="color-success">
-                                                <label>
-                                                <input type="checkbox" checked><i class="bg-success"></i><span>Post one to two times on Facebook.</span>
-                                                <a href='#' class="ti-close"></a>
-                                            </label>
-                                            </li>
-                                            <li class="color-warning">
-                                                <label>
-                                                <input type="checkbox" checked><i class="bg-warning"></i><span>Follow back those who follow you</span>
-                                                <a href='#' class="ti-close"></a>
-                                            </label>
-                                            </li>
-                                            <li class="color-danger">
-                                                <label>
-                                                <input type="checkbox" checked><i class="bg-danger"></i><span>Connect with one new person</span>
-                                                <a href='#' class="ti-close"></a>
-                                            </label>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <input type="text" class="tdl-new form-control" placeholder="Type here">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
+                
+                    
 
                 <!-- End PAge Content -->
             </div>
